@@ -14,8 +14,7 @@ const MyWizard = () => (
       <QuestionScreen />
       <ResponseScreen />
     </Wizard>
-    </div>
-  );
+  </div>
+);
 
-  export default MyWizard;
-  
+export default MyWizard;
