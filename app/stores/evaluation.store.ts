@@ -37,6 +37,15 @@ class EvaluationService {
     }
 
     @action.bound
+    resetEvaluation() {
+        this.selectedTopic = null;
+        this.selectedQuestion = null;
+        this.selectedResponseModel = null;
+        this.questions = [];
+        this.responses = [];
+    }
+
+    @action.bound
     setLoader(flag: boolean) {
         this.isLoading = flag;
     }
@@ -99,7 +108,7 @@ class EvaluationService {
     saveModelRating() {
         var selectedModel = evalationStore.responses.find(x => x.modelID == evalationStore.selectedResponseModel)
         this.setLoader(true);
-        return dataService.rateResponse(selectedModel!.modelID, selectedModel!.rating)
+        return dataService.rateResponse(selectedModel!.modelID, selectedModel!.rating!)
         .then(res => {
             return true
         }).finally(() => this.setLoader(false));

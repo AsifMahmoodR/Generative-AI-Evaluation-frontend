@@ -10,13 +10,14 @@ export interface IQuestion {
     id: number;
     question: string;
     q_id: string;
+    isEvaluated?: boolean;
 }
 
 export interface IResponse {
     modelID: string;
     manswer: string;
     questionID: string;
-    rating: number;
+    rating?: number;
 }
 
 export interface IRating {

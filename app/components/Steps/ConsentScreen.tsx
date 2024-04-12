@@ -17,7 +17,7 @@ const ConsentScreen = () => {
 
   return (
     <>
-      <div className="consent-container lg:col-start-2 lg:max-w-2xl">
+      <div className="consent-container lg:col-start-2">
         {/* <p className="text-base font-semibold leading-6 text-indigo-500 uppercase">
             Securing your API
         </p> */}
@@ -47,7 +47,7 @@ const ConsentScreen = () => {
           <div className="flex items-center h-5">
             <input id="terms" type="checkbox" onClick={handleClick} checked={checked}  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
           </div>
-          <label for="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have read and understood the terms of using the service.</label>
+          <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have read and understood the terms of using the service.</label>
         </div>
         <div className="flex items-end text-right float-right">
 
