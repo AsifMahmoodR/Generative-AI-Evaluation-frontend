@@ -53,9 +53,11 @@ main {
 }
 
 .btn-green:disabled {
-  background-color: gray;
+  background-color: lightgrey;
+  border-color: lightgray;
+  cursor: not-allowed;
   &:hover {
-    background-color: gray;
+    background-color: lightgrey;
   }
 }
 
@@ -65,17 +67,24 @@ main {
   padding: 10px;
   align-content: center;
   min-height: 80px;
+  position: relative;
 
   &:hover {
     background-color: aliceblue;
     cursor: pointer;
     box-shadow: inset;
+    > .selection-icon {
+      opacity: 0.7;
+    }
   }
 
   &.selected {
     background-color: aliceblue;
     border: 1px solid darkcyan;
     font-weight: bold;
+    > .selection-icon {
+      opacity: 1 !important;
+    }
   }
 }
 
@@ -90,24 +99,24 @@ main {
   &:hover {
     cursor: pointer;
     box-shadow: inset;
-    > .question-icon {
+    > .selection-icon {
       opacity: 0.7;
     }
   }
 
   &.selected {
     background-color: aliceblue;
-    > .question-icon {
+    > .selection-icon {
       opacity: 1 !important;
     }
   }
+}
 
-  .question-icon {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    opacity: 0.1;
-  }
+.selection-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  opacity: 0.1;
 }
 
 .app-footer {
@@ -138,7 +147,7 @@ main {
       background-color: darkseagreen;
 
       > a {
-        display: none;
+        visibility: hidden;
       }
     }
 

@@ -6,17 +6,18 @@ import ResponseScreen from './Steps/ResponseScreen';
 import CategorySelection from './Steps/CategorySelection';
 import QuestionsSelection from './Steps/QuestionsSelection';
 import RateScreen from './Steps/RateScreen';
+import AnimatedStep from './Shared/AnimatedStep';
 
 
 const MyWizard = () => (
   <div className='wizard-container py-4 px-4 rounded-lg border'>
     <Wizard>
       <WelcomeScreen />
-      <ConsentScreen />
-      <CategorySelection />
-      <QuestionsSelection /> 
-      <ResponseScreen />
-      <RateScreen />
+      <AnimatedStep><ConsentScreen /></AnimatedStep>
+      <AnimatedStep><CategorySelection /></AnimatedStep>
+      <AnimatedStep><QuestionsSelection /> </AnimatedStep>
+      <AnimatedStep><ResponseScreen /></AnimatedStep>
+      <AnimatedStep><RateScreen /></AnimatedStep>
     </Wizard>
   </div>
 );

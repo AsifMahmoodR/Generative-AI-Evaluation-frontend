@@ -2,6 +2,7 @@ import { useWizard } from "react-use-wizard";
 import { useEffect } from "react";
 import { observer } from 'mobx-react-lite';
 import { evalationStore } from "@/app/stores/evaluation.store";
+import SelectionIcon from "../Shared/SelectionIcon";
 
 const CategorySelection = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
@@ -26,7 +27,7 @@ const CategorySelection = () => {
   return (
     <>
       <div className="consent-container">
-        <div className="lg:ml-6 lg:col-start-2 lg:max-w-5xl">
+        <div className="lg:ml-6 lg:col-start-2">
           <h4 className="mt-2 mb-5 text-2xl font-extrabold leading-8 text-gray-900 dark:text-white sm:text-3xl sm:leading-9">
             Category Selection
           </h4>
@@ -45,7 +46,7 @@ const CategorySelection = () => {
             <div onClick={() => onSelected(c.id)}
 
               className={`category-item max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${isSelected(c.id) ? 'selected' : ''}`}
-              key={c.id}>{c.topic_name}</div>
+              key={c.id}>{c.topic_name}<SelectionIcon isSelected={isSelected(c.id)}  /></div>
           ))}
         </div>
       </div>
