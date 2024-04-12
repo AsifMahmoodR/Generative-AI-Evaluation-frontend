@@ -28,10 +28,140 @@ body {
   }
 }
 
-.app-header {
-  
-}
 
 .wizard-container {
-  min-height: 300px;
+  height: 90%;
+  overflow: auto;
+}
+
+html {
+  @apply h-full;
+}
+body {
+  @apply h-full;
+}
+.container {
+  @apply h-dvh;
+}
+
+main {
+  height: 90%;
+}
+
+.consent-container {
+  @apply h-5/6;
+}
+
+.btn-green:disabled {
+  background-color: gray;
+  &:hover {
+    background-color: gray;
+  }
+}
+
+.category-item {
+  background-color: darkseagreen;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid lightcoral;
+  align-content: center;
+  min-height: 80px;
+
+  &:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+    box-shadow: inset;
+  }
+
+  &.selected {
+    background-color: aliceblue;
+    border: 1px solid darkcyan;
+    font-weight: bold;
+  }
+}
+
+.question-item {
+  background-color: darkseagreen;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid lightcoral;
+  align-content: center;
+  min-height: 80px;
+
+  &:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+    box-shadow: inset;
+  }
+
+  &.selected {
+    background-color: aliceblue;
+    border: 1px solid darkcyan;
+    font-weight: bold;
+  }
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left:0;
+  background-color: aliceblue;
+  width: 100%;
+  padding: 10px 5%;
+  border-top: 1px solid #ddd;
+
+  &.footer-buttons  {
+    text-align: right;
+  }
+}
+
+.app-loader {
+  position: absolute;
+}
+
+.response-item {
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 5px ;
+
+  &.submitted {
+    .response-title {
+      background-color: darkseagreen;
+
+      > a {
+        display: none;
+      }
+    }
+
+    .response-text { 
+      display: none;
+    }
+
+    .response-rating {
+      display: block;
+    }
+
+  }
+
+  .response-title {
+    > span {
+      font-weight: bold;
+    }
+    width: 100%;
+    background-color: aliceblue;
+    padding: 5px;
+  }
+
+  .response-text {
+    max-height: 200px;
+    overflow: auto;
+    padding-top: 5px;
+  }
+
+  .response-rating {
+    display: none;
+    padding: 5px;
+    font-style: italic;
+  }
 }

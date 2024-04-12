@@ -7,10 +7,10 @@ import Header from './components/Layout/Header';
 export default function Example() {
   return (
     <>
-      <div className="min-h-full">
+      <div className="container mx-auto">
         <Header />
-        <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"><MyWizard /></div>
+        <main className='mx-auto max-w-1xl py-4 px-4'>
+          <MyWizard />
         </main>
       </div>
     </>
