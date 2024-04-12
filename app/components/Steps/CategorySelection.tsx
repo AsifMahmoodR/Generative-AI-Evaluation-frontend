@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { observer } from 'mobx-react-lite';
 import { evalationStore } from "@/app/stores/evaluation.store";
 import SelectionIcon from "../Shared/SelectionIcon";
+import AppLoader from "../Shared/App-Loader";
 
 const CategorySelection = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
@@ -40,6 +41,7 @@ const CategorySelection = () => {
           </div>
 
         </div>
+        <AppLoader />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-5 py-5">
           {categories.map((c) => (

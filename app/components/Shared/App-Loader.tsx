@@ -1,8 +1,8 @@
-import { observer } from "mobx-react-lite"
-import { evalationStore } from "../stores/evaluation.store"
+import { observer } from 'mobx-react-lite';
+import { evalationStore } from "@/app/stores/evaluation.store";
 
-const AppLoader = () => 
-    {!evalationStore.isLoading ? (
+const AppLoader = () => {
+      return<> {evalationStore.isLoading ? (
         <div className="app-loader flex items-center justify-center">
           <div
             className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
@@ -12,6 +12,7 @@ const AppLoader = () =>
               >Loading...</span>
           </div>
         </div>
-    ) : <></> }
+    ) : <></> }</>
+  }
 
     export default observer(AppLoader);

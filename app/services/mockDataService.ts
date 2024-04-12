@@ -3,7 +3,11 @@ import { ICategory, IQuestion, IResponse } from "./dataService"
 class MockDataService {
 
     getCategories = async () => {
-        return await Promise.resolve(this._getCategories())
+        return new Promise<ICategory[]>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this._getCategories());
+            }, 2000);
+          });
     };
 
     _getCategories() : ICategory[] {
@@ -124,7 +128,11 @@ class MockDataService {
     }
 
     getQuestions = async (catId: number) => {
-        return await Promise.resolve(this._getQuestions(catId))
+        return new Promise<IQuestion[]>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this._getQuestions(catId));
+            }, 2000);
+          });
     };
 
     _getQuestions(catIds: number) : IQuestion[] {
@@ -273,7 +281,11 @@ class MockDataService {
     }
 
     getResponses = async (questionId: number) => {
-        return await Promise.resolve(this._getResponses(questionId))
+        return new Promise<IResponse[]>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this._getResponses(questionId));
+            }, 2000);
+          });
     };
 
     _getResponses(questionId: number) : IResponse[] {
@@ -302,7 +314,11 @@ class MockDataService {
     }
 
     rateResponse = async (modelId: string, rating: number) => {
-        return await Promise.resolve(true);
+        return new Promise<boolean>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(true);
+            }, 2000);
+          });
     };
 }
 

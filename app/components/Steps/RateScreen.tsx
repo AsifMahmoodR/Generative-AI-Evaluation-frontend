@@ -31,6 +31,8 @@ const RateScreen = () => {
   }
 
   const saveModelRating = async () => {
+    if(evalationStore.isLoading)
+      return;
     return evalationStore.saveModelRating()
       .then(res => {
         previousStep();
@@ -89,12 +91,16 @@ const RateScreen = () => {
       <footer className="app-footer py-3">
         <div className="flex items-end text-right float-right">
           <button disabled={!canProceed()} onClick={saveModelRating}
-            className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2"><svg
+            className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2">
+              {!evalationStore.isLoading ? <svg
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
               <path fill-rule="evenodd"
                 d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
                 clip-rule="evenodd"></path>
-            </svg>
+            </svg> :
+            <div
+    className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+    role="status"></div>}
             <span className="font-bold">Submit Feedback</span>
           </button>
         </div>

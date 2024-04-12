@@ -2,6 +2,7 @@ import { useWizard } from "react-use-wizard";
 import { useEffect } from "react";
 import { observer } from 'mobx-react-lite';
 import { evalationStore } from "@/app/stores/evaluation.store";
+import AppLoader from "../Shared/App-Loader";
 
 const ResponseScreen = () => {
   const { goToStep, nextStep } = useWizard();
@@ -51,6 +52,8 @@ const ResponseScreen = () => {
             </div>
           </div>}
         </div>
+        <AppLoader />
+
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 px-1 py-5 md:px-5">
           {responses.map((c) => (

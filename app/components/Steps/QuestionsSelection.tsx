@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { observer } from 'mobx-react-lite';
 import { evalationStore } from "@/app/stores/evaluation.store";
 import SelectionIcon from "../Shared/SelectionIcon";
+import AppLoader from "../Shared/App-Loader";
 
 const QuestionsSelection = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
@@ -40,6 +41,7 @@ const QuestionsSelection = () => {
               Please select a question to view relevant responses:             </div>
           </div>
         </div>
+        <AppLoader />
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 px-1 py-5 md:px-5">
           {questions.map((c) => (

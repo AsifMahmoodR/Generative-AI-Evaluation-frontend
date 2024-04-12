@@ -116,6 +116,9 @@ class EvaluationService {
 
     @action.bound
     loadCategories() {
+        if(this.responses.length) { //already loaded
+            return;
+        }
         this.isLoading = true;
 
          dataService.getCategories().then(res => {
