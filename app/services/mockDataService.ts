@@ -280,7 +280,7 @@ class MockDataService {
         ]
     }
 
-    getResponses = async (questionId: number) => {
+    getResponses = async (questionId: string) => {
         return new Promise<IResponse[]>((resolve, reject) => {
             setTimeout(() => {
                 resolve(this._getResponses(questionId));
@@ -288,7 +288,7 @@ class MockDataService {
           });
     };
 
-    _getResponses(questionId: number) : IResponse[] {
+    _getResponses(questionId: string) : IResponse[] {
         return [
             {
                 "modelID": "M1",
