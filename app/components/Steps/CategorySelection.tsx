@@ -53,7 +53,7 @@ const CategorySelection = () => {
         </div>
       </div>
 
-      <footer className="app-footer py-3">
+      {!evalationStore.isLoading && <footer className="app-footer py-3">
 
         <div className="flex items-end text-right float-right">
 
@@ -67,7 +67,7 @@ const CategorySelection = () => {
             <span className="font-bold">Proceed with selected category...</span>
           </button>
         </div>
-      </footer>
+      </footer> }
     </>
   );
 };

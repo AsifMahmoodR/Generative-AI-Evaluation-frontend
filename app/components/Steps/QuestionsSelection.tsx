@@ -58,7 +58,7 @@ ${isSelected(c.q_id) ? 'selected' : ''}`}
         </div>
       </div>
 
-      <footer className="app-footer py-3">
+      {!evalationStore.isLoading && <footer className="app-footer py-3">
         <div className="flex items-end text-right float-right">
           <button disabled={!canProceed()} onClick={nextStep}
             className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2"><svg
@@ -70,7 +70,7 @@ ${isSelected(c.q_id) ? 'selected' : ''}`}
             <span className="font-bold">Proceed with selected Question...</span>
           </button>
         </div>
-      </footer>
+      </footer>}
     </>
   );
 };

@@ -74,7 +74,7 @@ const ResponseScreen = () => {
         </div>
       </div>
 
-      <footer className="app-footer py-3">
+      {!evalationStore.isLoading && <footer className="app-footer py-3">
         {evalationStore.hasSubmittedAll() && <div className="flex items-end text-right float-left">
           <button onClick={restartEvaluation}
             className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2"><svg
@@ -96,7 +96,7 @@ const ResponseScreen = () => {
             <span className="font-bold">{evalationStore.responseProgressText()}</span>
           </span>
         </div>}
-      </footer>
+      </footer> }
     </>
   );
 };
