@@ -43,7 +43,7 @@ const CategorySelection = () => {
         </div>
         <AppLoader />
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-5 py-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:px-5 py-5 content-evenly">
           {categories.map((c) => (
             <div onClick={() => onSelected(c.id)}
 

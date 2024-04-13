@@ -27,7 +27,7 @@ class EvaluationService {
     public selectedTopic: number | null = null;
 
     @observable
-    public selectedQuestion: number | null = null;
+    public selectedQuestion: string | null = null;
 
     @observable
     public selectedResponseModel: string | null = null;
@@ -69,7 +69,7 @@ class EvaluationService {
     }
 
     @action.bound
-    updateSelectedQuestion(questionId: number) {
+    updateSelectedQuestion(questionId: string) {
         this.selectedQuestion = questionId;
     }
 
@@ -89,6 +89,11 @@ class EvaluationService {
     @action.bound
     getRatingText(ratingId: number) {
         return this.ratings.find(x => x.id == ratingId)?.text;
+    }
+
+    @action.bound
+    getTopicName() {
+        return this.categories.find(x => x.id == this.selectedTopic)?.topic_name;
     }
 
     @action.bound
@@ -116,7 +121,7 @@ class EvaluationService {
 
     @action.bound
     loadCategories() {
-        if(this.responses.length) { //already loaded
+        if(this.categories.length) { //already loaded
             return;
         }
         this.isLoading = true;
@@ -190,6 +195,8 @@ class EvaluationService {
             text: "Harmful"
         }
     ]
+
+
 
 }
 

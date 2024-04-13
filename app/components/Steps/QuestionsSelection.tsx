@@ -14,11 +14,11 @@ const QuestionsSelection = () => {
     evalationStore.loadQuestions();
   }, []);
 
-  const onSelected = (questionId: number) => {
+  const onSelected = (questionId: string) => {
     evalationStore.updateSelectedQuestion(questionId);
   }
 
-  const isSelected = (questionId: number) => {
+  const isSelected = (questionId: string) => {
     return evalationStore.selectedQuestion === questionId;
   }
 
@@ -33,6 +33,8 @@ const QuestionsSelection = () => {
           <h4 className="mb-5 mt-2 text-2xl font-extrabold leading-8 text-gray-900 dark:text-white sm:text-3xl sm:leading-9">
             Question Selection
           </h4>
+          <h3 className="mb-5 mt-2 text-xl font-extrabold leading-8 text-gray-500 dark:text-white sm:text-3xl sm:leading-9"
+          >{evalationStore.getTopicName()}</h3>
           <div id="alert-border-1" className="flex items-center p-4 mb-1 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:text-blue-400 dark:bg-gray-800 dark:border-blue-800" role="alert">
             <svg className="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
@@ -47,11 +49,11 @@ const QuestionsSelection = () => {
           {questions.map((c) => (
 
             <div className={`question-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700
-${isSelected(c.id) ? 'selected' : ''}`}
+${isSelected(c.q_id) ? 'selected' : ''}`}
 
-              onClick={() => onSelected(c.id)}
+              onClick={() => onSelected(c.q_id)}
 
-              key={c.id}>{c.question} <SelectionIcon isSelected={isSelected(c.id) } /></div>
+              key={c.q_id}>{c.question} <SelectionIcon isSelected={isSelected(c.q_id) } /></div>
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@ export interface ICategory {
 }
 
 export interface IQuestion {
-    id: number;
+    id: number; //this is topic id
     question: string;
     q_id: string;
     isEvaluated?: boolean;
@@ -48,7 +48,6 @@ class DataService {
     getCategories = async () => {
         return await this.HttpClient.get(`topic/getTopic`)
             .then((res) => {
-                debugger;
                 return res.data;
             })
             .catch((reason: any) => {
@@ -68,7 +67,7 @@ class DataService {
             });
     };
 
-    getResponses = async (questionId: number) => {
+    getResponses = async (questionId: string) => {
         return await this.HttpClient.get(`Answer/getAnswerByQID/${questionId}`)
             .then((res) => {
                 return res.data;
