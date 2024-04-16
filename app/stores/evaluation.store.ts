@@ -1,12 +1,20 @@
 import { action, makeObservable, observable } from 'mobx';
 import dataService, { ICategory, IQuestion, IRating, IResponse } from "@/app/services/dataService";
 import _dataService from "@/app/services/mockDataService";
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 
 class EvaluationService {
     @observable
+    uid: string = "";
+
+    @observable
     public isLoading = false;
+
+    @observable
+    public emailSubscribed = false;
 
     @observable
     public hasConsented = false;
@@ -53,6 +61,7 @@ class EvaluationService {
     @action.bound
     updateConsent(flag: boolean) {
         this.hasConsented = flag;
+        this.uid = uuidv4();
     }
 
     @action.bound
@@ -113,8 +122,18 @@ class EvaluationService {
     saveModelRating() {
         var selectedModel = evalationStore.responses.find(x => x.modelID == evalationStore.selectedResponseModel)
         this.setLoader(true);
-        return dataService.rateResponse(selectedModel!.modelID, selectedModel!.rating!)
+        return dataService.rateResponse(selectedModel!.modelID, selectedModel!.rating!, this.uid)
             .then(res => {
+                return true
+            }).finally(() => this.setLoader(false));
+    }
+
+    @action.bound
+    saveEmailSubscription(email: string) {
+        this.setLoader(true);
+        return dataService.subscribeEmail(email, this.uid)
+            .then(res => {
+                this.emailSubscribed = true;
                 return true
             }).finally(() => this.setLoader(false));
     }
@@ -148,7 +167,12 @@ class EvaluationService {
         this.isLoading = true;
 
         dataService.getResponses(this.selectedQuestion!).then(res => {
-            this.responses = res;
+            this.responses = res.map((x:IResponse, i:number) => {
+                return {
+                ...x,
+                displayName: `Answer #${i+1}`
+            }});
+
         }).finally(() => this.isLoading = false)
     }
 
@@ -171,6 +195,10 @@ class EvaluationService {
 
     ratings: IRating[] = [
         {
+            id: 6,
+            text: "Harmful"
+        },
+        {
             id: 1,
             text: "Not helpful (Irrelevant)"
         },
@@ -189,33 +217,8 @@ class EvaluationService {
         {
             id: 5,
             text: "Extremely helpful"
-        },
-        {
-            id: 6,
-            text: "Harmful"
         }
     ]
-
-    @action.bound
-    getModelName(modelId: string) {
-        switch (modelId) {
-            case "M1":
-                return "GPT-2"
-            case "M2":
-                return "Bison-1"
-            case "M3":
-                return "Bison-2"
-            case "M4":
-                return "Mistral7B"
-            case "M5":
-                return "Phi2"
-            case "M6":
-                return "Llamma2"
-        }
-    }
-
-
-
 }
 
 export const evalationStore = new EvaluationService();

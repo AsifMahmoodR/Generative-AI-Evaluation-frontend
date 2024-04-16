@@ -7,6 +7,7 @@ import CategorySelection from './Steps/CategorySelection';
 import QuestionsSelection from './Steps/QuestionsSelection';
 import RateScreen from './Steps/RateScreen';
 import AnimatedStep from './Shared/AnimatedStep';
+import FinalScreen from './Steps/FinalScreen';
 
 
 const MyWizard = () => (
@@ -18,6 +19,7 @@ const MyWizard = () => (
       <AnimatedStep><QuestionsSelection /> </AnimatedStep>
       <AnimatedStep><ResponseScreen /></AnimatedStep>
       <AnimatedStep><RateScreen /></AnimatedStep>
+      <AnimatedStep><FinalScreen /></AnimatedStep>
     </Wizard>
   </div>
 );

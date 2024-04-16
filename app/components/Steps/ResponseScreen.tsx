@@ -12,15 +12,12 @@ const ResponseScreen = () => {
     evalationStore.loadResponses();
   }, []);
 
-  const onSelected = (modelId: string) => {
-    evalationStore.updateSelectedResponseModel(modelId);
+  const onSelected = () => {
+    var firstModel = evalationStore.responses.find(x => !x.rating);
+    evalationStore.updateSelectedResponseModel(firstModel!.modelID);
     nextStep();
   }
 
-  /*const isSelected = (questionId: string) => {
-    return evalationStore.selectedQuestion === questionId;
-  }
-*/
   const restartEvaluation = () => {
     evalationStore.resetEvaluation();
     goToStep(2)
@@ -56,16 +53,12 @@ const ResponseScreen = () => {
 
 
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 px-1 py-5 md:px-5">
-          {responses.map((c) => (
+          {responses.map((c, index) => (
 
             <div className={`response-item max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${!!c.rating ? 'submitted' : ''}`}
               key={c.modelID}>
               <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
-                <span className="col-span-3">{evalationStore.getModelName(c.modelID)}</span>
-                <a href="#"
-                  onClick={() => onSelected(c.modelID)}
-                  className=" text-xs font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                  Rate</a>
+                <span className="col-span-3">{c.displayName}</span>
               </div>
               <p className="response-text"> {c.manswer}</p>
               <p className="response-rating"> {evalationStore.getRatingText(c.rating!)}</p>
@@ -75,27 +68,21 @@ const ResponseScreen = () => {
       </div>
 
       {!evalationStore.isLoading && <footer className="app-footer py-3">
-        {evalationStore.hasSubmittedAll() && <div className="flex items-end text-right float-left">
-          <button onClick={restartEvaluation}
-            className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2"><svg
+        <div className="flex items-end text-center justify-center items-center float-right">
+        <button onClick={onSelected}
+            className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2">
+              {!evalationStore.isLoading ? <svg
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
               <path fill-rule="evenodd"
                 d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
                 clip-rule="evenodd"></path>
-            </svg>
-            <span className="font-bold">Try another question?</span>
-          </button></div>}
-        {!evalationStore.hasSubmittedAll() && <div className="flex items-end text-center justify-center items-center">
-          <span
-            className="btn-green rounded-lg p-3 bg-green-500/20 border-2 border-solid border-green-500/20 transition-colors hover:bg-green-500/40 font-medium text-base leading-none flex flex-row items-center justify-center gap-2"><svg
-              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-              <path fill-rule="evenodd"
-                d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                clip-rule="evenodd"></path>
-            </svg>
-            <span className="font-bold">{evalationStore.responseProgressText()}</span>
-          </span>
-        </div>}
+            </svg> :
+            <div
+    className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+    role="status"></div>}
+            <span className="font-bold">Rate Responses...</span>
+          </button>
+        </div>
       </footer> }
     </>
   );

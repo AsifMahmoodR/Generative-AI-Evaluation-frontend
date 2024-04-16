@@ -18,6 +18,7 @@ export interface IResponse {
     manswer: string;
     questionID: string;
     rating?: number;
+    displayName?: string;
 }
 
 export interface IRating {
@@ -78,12 +79,28 @@ class DataService {
             });
     };
 
-    rateResponse = async (modelId: string, rating: number) => {
+    rateResponse = async (modelId: string, rating: number, uid: string) => {
         var rateModel = {
+            uid,
             model: modelId,
             rate: rating
         };
         return await this.HttpClient.post(`addRate`, rateModel)
+            .then((res) => {
+                return res.data;
+            })
+            .catch((reason: any) => {
+                console.log(reason)
+                return [];
+            });
+    };
+
+    subscribeEmail = async (email: string, uid: string) => {
+        var model = {
+            uid,
+            email
+        };
+        return await this.HttpClient.post(`addEmail`, model)
             .then((res) => {
                 return res.data;
             })

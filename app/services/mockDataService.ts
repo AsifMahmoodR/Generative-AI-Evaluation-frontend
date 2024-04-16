@@ -313,7 +313,15 @@ class MockDataService {
         ]
     }
 
-    rateResponse = async (modelId: string, rating: number) => {
+    rateResponse = async (modelId: string, rating: number, uid: string) => {
+        return new Promise<boolean>((resolve, reject) => {
+            setTimeout(() => {
+                resolve(true);
+            }, 2000);
+          });
+    };
+
+    subscribeEmail = async (email: string, uid: string) => {
         return new Promise<boolean>((resolve, reject) => {
             setTimeout(() => {
                 resolve(true);

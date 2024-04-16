@@ -1,17 +1,21 @@
 import { useWizard } from "react-use-wizard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { observer } from 'mobx-react-lite';
 import { evalationStore } from "@/app/stores/evaluation.store";
+import AnimatedStep from "../Shared/AnimatedStep";
 
 const RateScreen = () => {
-  const { handleStep, previousStep, nextStep } = useWizard();
+  const { handleStep, previousStep, nextStep, goToStep } = useWizard();
+  const [selected, setSelected ] = useState<number | undefined>(undefined)
+  const [isReloading, setIsReloading ] = useState<boolean>(false)
 
   var ratings = evalationStore.ratings;
   var responses = evalationStore.responses;
   var selectedModel = evalationStore.responses.find(x => x.modelID == evalationStore.selectedResponseModel);
 
   const onSelected = (ratingId: number) => {
-    evalationStore.updateModelRating(ratingId);
+      setSelected(ratingId);
+    //evalationStore.updateModelRating(ratingId);
   }
 
   const onOptionChange = (e: any) => {
@@ -19,29 +23,39 @@ const RateScreen = () => {
   }
 
   const isSelected = (itemRating: number) => {
-    var value = selectedModel?.rating === itemRating;
-    if (value) {
-      console.log("selected rating: ", itemRating);
-    }
+    var value = selected === itemRating;
+    
     return value;
   }
 
   const canProceed = () => {
-    return !!selectedModel?.rating;
+    return !!selected;
   }
 
   const saveModelRating = async () => {
     if(evalationStore.isLoading)
       return;
+    evalationStore.updateModelRating(selected!);
     return evalationStore.saveModelRating()
       .then(res => {
-        previousStep();
+        var nextModel = evalationStore.responses.find(x => !x.rating);
+        if(nextModel) {
+          setIsReloading(true)
+          setTimeout(() => {
+            setSelected(undefined);
+            evalationStore.updateSelectedResponseModel(nextModel!.modelID);
+            setIsReloading(false)
+          }, 100);
+        }
+        else {
+          nextStep();
+        }
       })
   }
 
   return (
     <>
-      <div className="consent-container">
+      {!isReloading && <AnimatedStep> <div className="consent-container">
         <div className="lg:ml-6 lg:col-start-2 lg:max-w-5xl">
           <h4 className="mt-2 text-2xl font-extrabold leading-8 text-gray-900 dark:text-white sm:text-3xl sm:leading-9">
             Rate Model Response
@@ -52,14 +66,15 @@ const RateScreen = () => {
           <div className={'response-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'}
             key={selectedModel!.modelID}>
             <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
-              <span className="col-span-3">{evalationStore.getModelName(selectedModel!.modelID)}</span>
+              <span className="col-span-3">{selectedModel!.displayName}</span>
             </div>
             <p className="response-text"> {selectedModel!.manswer}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 px-1 py-5 md:px-5">
-          <div className={'response-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'}>
+          <div 
+          className={`response-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${canProceed() ? 'border-green-500/20 bg-green-500/40' : ''}`}>
             <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
               <span className="col-span-4">Please choose from provided options and submit:</span>
             </div>
@@ -86,7 +101,7 @@ const RateScreen = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div></AnimatedStep>}
 
       <footer className="app-footer py-3">
         <div className="flex items-end text-right float-right">
@@ -101,7 +116,7 @@ const RateScreen = () => {
             <div
     className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
     role="status"></div>}
-            <span className="font-bold">Submit Feedback</span>
+            <span className="font-bold">Submit Feedback ({evalationStore.responseProgressText()})</span>
           </button>
         </div>
       </footer>
