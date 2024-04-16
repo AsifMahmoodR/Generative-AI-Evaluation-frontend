@@ -74,7 +74,7 @@ const RateScreen = () => {
 
         <div className="grid grid-cols-1 gap-4 px-1 py-5 md:px-5">
           <div 
-          className={`response-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${canProceed() ? 'border-green-500/20 bg-green-500/40' : ''}`}>
+          className={`response-item p-6 border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${canProceed() ? 'border-green-500/20 bg-green-500/40' : 'border-gray-200 bg-white'}`}>
             <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
               <span className="col-span-4">Please choose from provided options and submit:</span>
             </div>
