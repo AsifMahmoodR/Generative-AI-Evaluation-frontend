@@ -49,7 +49,7 @@ class EvaluationService {
     setLoader(flag: boolean) {
         this.isLoading = flag;
     }
-    
+
     @action.bound
     updateConsent(flag: boolean) {
         this.hasConsented = flag;
@@ -57,7 +57,7 @@ class EvaluationService {
 
     @action.bound
     updateSelectedCategory(categoryId: string) {
-        if(this.selectedCateogries.find(x => x === categoryId))
+        if (this.selectedCateogries.find(x => x === categoryId))
             this.selectedCateogries = this.selectedCateogries.filter(x => x !== categoryId)
         else
             this.selectedCateogries.push(categoryId)
@@ -99,7 +99,7 @@ class EvaluationService {
     @action.bound
     hasSubmittedAll() {
         var totalResponses = evalationStore.responses.length;
-        var totalRated = evalationStore.responses.filter(x => !!x.rating).length; 
+        var totalRated = evalationStore.responses.filter(x => !!x.rating).length;
         return totalResponses === totalRated;
     }
 
@@ -114,19 +114,19 @@ class EvaluationService {
         var selectedModel = evalationStore.responses.find(x => x.modelID == evalationStore.selectedResponseModel)
         this.setLoader(true);
         return dataService.rateResponse(selectedModel!.modelID, selectedModel!.rating!)
-        .then(res => {
-            return true
-        }).finally(() => this.setLoader(false));
+            .then(res => {
+                return true
+            }).finally(() => this.setLoader(false));
     }
 
     @action.bound
     loadCategories() {
-        if(this.categories.length) { //already loaded
+        if (this.categories.length) { //already loaded
             return;
         }
         this.isLoading = true;
 
-         dataService.getCategories().then(res => {
+        dataService.getCategories().then(res => {
             this.categories = res;
         }).finally(() => this.isLoading = false)
     }
@@ -135,19 +135,19 @@ class EvaluationService {
     loadQuestions() {
         this.isLoading = true;
 
-         dataService.getQuestions(this.selectedTopic!).then(res => {
+        dataService.getQuestions(this.selectedTopic!).then(res => {
             this.questions = res;
-         }).finally(() => this.isLoading = false)
+        }).finally(() => this.isLoading = false)
     }
 
     @action.bound
     loadResponses() {
-        if(this.responses.length) { //already loaded
+        if (this.responses.length) { //already loaded
             return;
         }
         this.isLoading = true;
 
-         dataService.getResponses(this.selectedQuestion!).then(res => {
+        dataService.getResponses(this.selectedQuestion!).then(res => {
             this.responses = res;
         }).finally(() => this.isLoading = false)
     }
@@ -168,7 +168,7 @@ class EvaluationService {
         this.isLoading = false
     }
 
-    
+
     ratings: IRating[] = [
         {
             id: 1,
@@ -195,6 +195,24 @@ class EvaluationService {
             text: "Harmful"
         }
     ]
+
+    @action.bound
+    getModelName(modelId: string) {
+        switch (modelId) {
+            case "M1":
+                return "GPT-2"
+            case "M2":
+                return "Bison-1"
+            case "M3":
+                return "Bison-2"
+            case "M4":
+                return "Mistral7B"
+            case "M5":
+                return "Phi2"
+            case "M6":
+                return "Llamma2"
+        }
+    }
 
 
 

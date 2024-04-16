@@ -61,7 +61,7 @@ const ResponseScreen = () => {
             <div className={`response-item max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${!!c.rating ? 'submitted' : ''}`}
               key={c.modelID}>
               <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
-                <span className="col-span-3">{c.modelID}</span>
+                <span className="col-span-3">{evalationStore.getModelName(c.modelID)}</span>
                 <a href="#"
                   onClick={() => onSelected(c.modelID)}
                   className=" text-xs font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">

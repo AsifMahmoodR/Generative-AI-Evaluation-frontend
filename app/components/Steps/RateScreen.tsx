@@ -52,7 +52,7 @@ const RateScreen = () => {
           <div className={'response-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'}
             key={selectedModel!.modelID}>
             <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
-              <span className="col-span-3">{selectedModel!.modelID}</span>
+              <span className="col-span-3">{evalationStore.getModelName(selectedModel!.modelID)}</span>
             </div>
             <p className="response-text"> {selectedModel!.manswer}</p>
           </div>
