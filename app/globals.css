@@ -32,9 +32,11 @@ body {
 html {
   @apply h-full;
 }
+
 body {
   @apply h-full;
 }
+
 .container {
   @apply h-dvh;
 }
@@ -51,8 +53,15 @@ main {
   background-color: lightgrey;
   border-color: lightgray;
   cursor: not-allowed;
+
   &:hover {
     background-color: lightgrey;
+  }
+}
+
+.topic-name {
+  &::first-letter {
+    text-transform: capitalize;
   }
 }
 
@@ -65,11 +74,13 @@ main {
   min-height: 80px;
   position: relative;
 
+
   &:hover {
     background-color: aliceblue;
     cursor: pointer;
     box-shadow: inset;
-    > .selection-icon {
+
+    >.selection-icon {
       opacity: 0.7;
     }
   }
@@ -78,7 +89,8 @@ main {
     background-color: aliceblue;
     border: 1px solid darkcyan;
     font-weight: bold;
-    > .selection-icon {
+
+    >.selection-icon {
       opacity: 1 !important;
     }
   }
@@ -95,14 +107,16 @@ main {
   &:hover {
     cursor: pointer;
     box-shadow: inset;
-    > .selection-icon {
+
+    >.selection-icon {
       opacity: 0.7;
     }
   }
 
   &.selected {
     background-color: aliceblue;
-    > .selection-icon {
+
+    >.selection-icon {
       opacity: 1 !important;
     }
   }
@@ -118,35 +132,35 @@ main {
 .app-footer {
   position: fixed;
   bottom: 0;
-  left:0;
+  left: 0;
   background-color: aliceblue;
   width: 100%;
   padding: 10px 5%;
   border-top: 1px solid #ddd;
 
-  &.footer-buttons  {
+  &.footer-buttons {
     text-align: right;
   }
 }
 
-.app-loader {
-}
+.app-loader {}
 
 .response-item {
   position: relative;
-  padding: 5px ;
+  padding: 5px;
 
   &.submitted {
     border-color: cadetblue;
+
     .response-title {
       background-color: darkseagreen;
 
-      > a {
+      >a {
         visibility: hidden;
       }
     }
 
-    .response-text { 
+    .response-text {
       display: none;
     }
 
@@ -157,9 +171,10 @@ main {
   }
 
   .response-title {
-    > span {
+    >span {
       font-weight: bold;
     }
+
     width: 100%;
     background-color: aliceblue;
     padding: 5px;

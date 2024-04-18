@@ -33,7 +33,7 @@ const QuestionsSelection = () => {
           <h4 className="mb-5 mt-2 text-2xl font-extrabold leading-8 text-gray-900 dark:text-white sm:text-3xl sm:leading-9">
             Question Selection
           </h4>
-          <h3 className="mb-5 mt-2 text-xl font-extrabold leading-8 text-gray-500 dark:text-white sm:text-3xl sm:leading-9"
+          <h3 className="topic-name mb-5 mt-2 text-xl font-extrabold leading-8 text-gray-500 dark:text-white sm:text-3xl sm:leading-9"
           >{evalationStore.getTopicName()}</h3>
           <div id="alert-border-1" className="flex items-center p-4 mb-1 text-blue-800 border-t-4 border-blue-300 bg-blue-50 dark:text-blue-400 dark:bg-gray-800 dark:border-blue-800" role="alert">
             <svg className="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

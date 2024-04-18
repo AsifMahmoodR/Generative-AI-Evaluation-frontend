@@ -47,7 +47,7 @@ const CategorySelection = () => {
           {categories.map((c) => (
             <div onClick={() => onSelected(c.id)}
 
-              className={`category-item max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${isSelected(c.id) ? 'selected' : ''}`}
+              className={`category-item topic-name max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${isSelected(c.id) ? 'selected' : ''}`}
               key={c.id}>{c.topic_name}<SelectionIcon isSelected={isSelected(c.id)}  /></div>
           ))}
         </div>
