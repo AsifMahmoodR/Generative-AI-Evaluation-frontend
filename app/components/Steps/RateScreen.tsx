@@ -63,7 +63,7 @@ const RateScreen = () => {
         </div>
 
         <div className="grid grid-cols-1gap-4 px-1 py-5 md:px-5">
-          <div className={'response-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'}
+          <div className={'response-item p-6 bg-white border border-gray-200 rounded-lg dark:text-white shadow dark:bg-gray-800 dark:border-gray-700'}
             key={selectedModel!.modelID}>
             <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
               <span className="col-span-3">{selectedModel!.displayName}</span>

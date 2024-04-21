@@ -61,7 +61,7 @@ const QuestionsSelection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 px-1 py-5 md:px-5">
           {questions.map((c) => (
 
-            <div className={`question-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700
+            <div className={`question-item p-6 bg-white border border-gray-200 rounded-lg shadow dark:text-white dark:bg-gray-800 dark:border-gray-700
 ${isSelected(c.q_id) ? 'selected' : ''}`}
 
               onClick={() => onSelected(c.q_id)}

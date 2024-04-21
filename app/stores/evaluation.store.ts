@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from 'mobx';
-import dataService, { ICategory, IQuestion, IRating, IResponse } from "@/app/services/dataService";
-import _dataService from "@/app/services/mockDataService";
+import _dataService, { ICategory, IQuestion, IRating, IResponse } from "@/app/services/dataService";
+import dataService from "@/app/services/mockDataService";
 import { v4 as uuidv4 } from 'uuid';
 
 

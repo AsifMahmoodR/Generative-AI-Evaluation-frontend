@@ -55,7 +55,7 @@ const ResponseScreen = () => {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 px-1 py-5 md:px-5">
           {responses.map((c, index) => (
 
-            <div className={`response-item max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${!!c.rating ? 'submitted' : ''}`}
+            <div className={`response-item max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:text-white dark:bg-gray-800 dark:border-gray-700 ${!!c.rating ? 'submitted' : ''}`}
               key={c.modelID}>
               <div className="grid grid-cols-4 gap-4 response-title justify-center items-center">
                 <span className="col-span-3">{c.displayName}</span>
