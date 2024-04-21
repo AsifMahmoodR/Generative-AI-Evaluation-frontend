@@ -35,7 +35,7 @@ const ConsentScreen = () => {
                     clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <p className="ml-3 leading-5 text-gray-600">
+              <p className="ml-3 leading-5 text-gray-600 dark:text-white ">
                 {text}
               </p>
             </li>
@@ -45,7 +45,7 @@ const ConsentScreen = () => {
       <footer className="app-footer py-3">
         <div className="flex items-start mb-5">
           <div className="flex items-center h-5">
-            <input id="terms" type="checkbox" onClick={handleClick} checked={checked} className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+            <input id="terms" type="checkbox" onClick={handleClick} checked={checked} className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:text-white  dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
           </div>
           <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have read and understood the terms of using the service.</label>
         </div>

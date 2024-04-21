@@ -5,8 +5,8 @@ const WelcomeScreen = () => {
 
   return (
     <div className="lg:col-start-2 w-full">
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900" >Welcome</h1>
-      <p className="mt-10 text-xl tracking-tight text-gray-900">
+      <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white " >Welcome</h1>
+      <p className="mt-10 text-xl tracking-tight text-gray-900 dark:text-white ">
         Thank you for choosing to participate in our study. Please click the button below to begin:</p>
 
       <footer className="app-footer py-3">
